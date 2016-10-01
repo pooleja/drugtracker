@@ -4,5 +4,16 @@
 	</head>
 	<body>
     Index Page
+		<a href="/logout">logout</a>
+
+		<% if( typeof user == 'object' && user ){ %>
+
+			<h1>logged in</h1>
+
+		<% }else{ %>
+
+				<h1>logged out</h1>
+
+		<% } %>
 	</body>
 </html>
