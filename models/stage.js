@@ -4,7 +4,6 @@ var stageSchema = mongoose.Schema({
 
    name: {type: String, required: true},
    description: {type: String, required: true},
-   stageId: {type: String, required: true},
 });
 
-module.exports = mongoose.model('Material', materialSchema);
+module.exports = mongoose.model('Stage', stageSchema);
