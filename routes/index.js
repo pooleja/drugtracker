@@ -17,4 +17,11 @@ router.get('/tracking', function (req, res) {
   res.render('tracking', { title: "Lot Tracking"});
 });
 
+router.get('/tracking', function (req, res) {
+
+  // Add teirion login here
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify({ a: 1 }));
+});
+
 module.exports = router;
