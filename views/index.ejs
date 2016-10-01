@@ -5,8 +5,10 @@
 	<body>
     Index Page
 		<a href="/logout">logout</a>
+		<a href="/login">login</a>
+		<a href="/signup">signup</a>
 
-		<% if( typeof user == 'object' && user ){ %>
+		<% if( loggedin ){ %>
 
 			<h1>logged in</h1>
 

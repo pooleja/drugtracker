@@ -14,6 +14,18 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/drugtracker');
 
 app.use(express.static('public'));
+
+app.set('trust proxy', 1)
+app.use(session({
+  secret: "asdfasf",
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 30, // 30 day cookie expiration
+    secure: false
+  },
+  proxy: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection }) // Use mongodb to store connection info
+}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());

@@ -4,7 +4,8 @@ var passport = require('passport');
 var User = require('../models/user.js');
 
 router.get('/', function (req, res) {
-  res.render('index', { title: "Home", user: req.user});
+  console.log("Authenticated: " + req.isAuthenticated())
+  res.render('index', { title: "Home", loggedin: req.isAuthenticated()});
 });
 
 router.get('/login', function (req, res) {
@@ -12,7 +13,7 @@ router.get('/login', function (req, res) {
 });
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',failureRedirect: '/login'
+  successRedirect: '/', failureRedirect: '/login'
 }));
 
 router.get('/signup', function (req, res) {
@@ -20,15 +21,16 @@ router.get('/signup', function (req, res) {
 });
 
 router.post('/signup', function(req, res) {
-    User.register(new User({ username : req.body.username }), req.body.password, function(err, account) {
-        if (err) {
-          return res.render("register", {info: "Sorry. That username already exists. Try again."});
-        }
+  User.register(new User({ username : req.body.username }), req.body.password, function(err, account) {
+      if (err) {
+        console.log(err);
+        return res.render("signup", {info: "Sorry. That username already exists. Try again."});
+      }
 
-        passport.authenticate('local')(req, res, function () {
-          res.redirect('/');
-        });
-    });
+      passport.authenticate('local')(req, res, function () {
+        res.redirect('/');
+      });
+  });
 });
 
 router.get('/logout', function(req, res) {
