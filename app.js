@@ -6,6 +6,7 @@ var session = require('express-session');
 var path = require('path');
 var User = require('./models/user.js');
 var MongoStore = require('connect-mongo')(session);
+var Env = require('./config/env.js');
 
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
@@ -17,7 +18,7 @@ app.use(express.static('public'));
 
 app.set('trust proxy', 1)
 app.use(session({
-  secret: "asdfasf",
+  secret: Env.COOKIE_SECRET,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 * 30, // 30 day cookie expiration
     secure: false
