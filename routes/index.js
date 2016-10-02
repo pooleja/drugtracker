@@ -25,7 +25,7 @@ router.get('/', function (req, res) {
     if(foundMaterials)
       ret = foundMaterials;
 
-    Transfer.find({}, function(err, foundTransfers){
+    Transfer.find({fromUserId: req.user.id}, function(err, foundTransfers){
 
       var retTransfers = [];
       var retTransferNames = [];
@@ -250,7 +250,12 @@ router.post("/create_transfer", function(req, res){
   var targetUserId = req.body.targetUser;
 
   // Create new material and assign to user
-  var m = new Material({name:newMaterialName, ownerId: targetUserId, stageId: getNextStage(req.user.stageId)});
+  var m = new Material({name:newMaterialName,
+    nationalDrugCode: req.body.nationalDrugCode,
+    lotNumber: req.body.lotNumber,
+    ownerId: targetUserId,
+    stageId: getNextStage(req.user.stageId)
+  });
   m.save();
 
   // Create new transfer

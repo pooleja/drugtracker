@@ -40,8 +40,8 @@
 				<div class="control-group">
 					<% if (materials){ %>
 						<% for(var i=0; i < materials.length; i++) { %>
-							<label class="control control--checkbox" name="sourceMaterials" value="<%= materials[i]._id %>"><%= materials[i].name %>
-								<input type="checkbox"/>
+							<label class="control control--checkbox"><%= materials[i].name %>
+								<input type="checkbox" name="sourceMaterials" value="<%= materials[i]._id %>"/>
 								<div class="control__indicator"></div>
 							</label>
 						<% } %>
@@ -57,8 +57,14 @@
 					<% } %>
 				</select>
 				<hr>
-				<h1 class="pad-20">New Material Name:</h1>
+				<h1 class="pad-20">Name:</h1>
 				<input type="text" name="materialName" placeholder="ie: Viagra"/>
+				<hr>
+				<h1 class="pad-20">National Drug Code:</h1>
+				<input type="text" name="nationalDrugCode" placeholder="ie: 98876"/>
+				<hr>
+				<h1 class="pad-20">Lot Number:</h1>
+				<input type="text" name="lotNumber" placeholder="ie: 12345"/>
 				<hr>
 				<h1 class="pad-20">Verify:</h1>
 				<div class="control-group">
