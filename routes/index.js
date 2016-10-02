@@ -8,8 +8,23 @@ var Transfer = require('../models/transfer.js');
 var mongoose = require('mongoose');
 
 router.get('/', function (req, res) {
-  console.log("Authenticated: " + req.isAuthenticated())
-  res.render('index', { title: "Home", loggedin: req.isAuthenticated()});
+
+  if(!req.isAuthenticated())
+    return res.redirect('/login');
+
+  Material.find({ ownerId: req.user.id }, function(err, foundMaterials){
+
+    if(err){
+       console.log("Failed to find materials.")
+    }
+
+    var ret = {};
+    if(foundMaterials)
+      ret = foundMaterials;
+
+    res.render('index', { title: "Home", materials: foundMaterials});
+  });
+
 });
 
 router.get('/login', function (req, res) {
@@ -139,7 +154,7 @@ router.get("/viagra", function(req, res){
 router.get("/materials", function(req, res){
 
   if(!req.isAuthenticated())
-    return res.redirect('/');
+    return res.redirect('/login');
 
   Material.find({ ownerId: req.user.id }, function(err, foundMaterials){
 
