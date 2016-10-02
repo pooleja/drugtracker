@@ -101,6 +101,10 @@ router.get('/submit', function (req, res) {
   res.render('submit', { title: "Submit Lot"});
 });
 
+router.get('/error', function (req, res) {
+  res.render('error', { title: "Lot Error"});
+});
+
 router.get('/teirion', function (req, res) {
 
   // Add teirion login here
