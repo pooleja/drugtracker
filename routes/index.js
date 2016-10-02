@@ -5,7 +5,10 @@ var User = require('../models/user.js');
 var Material = require('../models/material.js');
 var Stage = require('../models/stage.js');
 var Transfer = require('../models/transfer.js');
+var Receipt = require('../models/receipt.js');
 var mongoose = require('mongoose');
+var Tierion = require('./Tierion.js')
+var moment = require('moment');
 
 router.get('/', function (req, res) {
 
@@ -22,7 +25,22 @@ router.get('/', function (req, res) {
     if(foundMaterials)
       ret = foundMaterials;
 
-    res.render('index', { title: "Home", materials: ret});
+    Transfer.find({}, function(err, foundTransfers){
+
+      var retTransfers = [];
+      var retTransferNames = [];
+      if(foundTransfers){
+        retTransfers = foundTransfers;
+      }
+      console.log("----" + JSON.stringify(retTransfers));
+
+
+      return res.render('index', { title: "Home", materials: ret, transfers: retTransfers, moment: moment});
+
+
+
+
+    });
   });
 
 });
@@ -206,7 +224,7 @@ router.get("/create_transfer", function(req, res){
     console.log("Next stage: " + nextStage);
     User.find({ stageId: nextStage }, function(err, foundtargetUsers){
 
-      res.render('submit', { title: "Create Transfer", materials: foundMaterials, targetUsers: foundtargetUsers, user: req.user});
+      res.render('create_transfer', { title: "Create Transfer", materials: foundMaterials, targetUsers: foundtargetUsers, user: req.user});
 
     });
   });
@@ -232,10 +250,29 @@ router.post("/create_transfer", function(req, res){
     toUserId: targetUserId,
     sourceMaterialIds: sourceMaterials,
     targetMaterialId: m.id,
+    authorized:  req.body.authorized, //•Is authorized as required under DSCSA;
+    sourceAuthorized:  req.body.sourceAuthorized, //•Received the product from a person that is authorized as required under DSCSA;
+    recievedTsFromSource:  req.body.recievedTsFromSource, //•Received transaction information and a transaction statement from the prior owner of the product, as required under the law;
+    notIllegal:  req.body.notIllegal, // •Did not knowingly ship a suspect or illegitimate product;
+    complied:  req.body.complied, // •Had systems and processes in place to comply with verification requirements under the law;
+    notFalseInfo:  req.body.notFalseInfo, //•Did not knowingly provide false transaction information; and
+    notAltered:  req.body.notAltered, //•Did not knowingly alter the transaction history
   });
   t.save();
 
   // Submit hash to blockchain and create receipt
+  var stringToHash = JSON.stringify(t);
+  var tier   = new Tierion();
+  tier.auth(function(err){
+    tier.putHash(stringToHash, function(err, receipt){
+      var r = new Receipt({receiptId: receipt, transferId: t.id});
+      r.save()
+
+      return res.redirect('/');
+    })
+
+  });
+
 
 });
 
@@ -254,7 +291,12 @@ router.post("/create_material", function(req, res){
     var m = new Material({
       name:req.body.name,
       ownerId: req.user.id,
-      stageId:"57f02e2b7f3b0bfe2fee4587"
+      stageId:"57f02e2b7f3b0bfe2fee4587",
+      dosage: req.body.dosage,
+      nationalDrugCode: req.body.nationalDrugCode,
+      containerSize: req.body.containerSize,
+      numContainers: req.body.numContainers,
+      lotNumber: req.body.lotNumber,
     });
     m.save();
 

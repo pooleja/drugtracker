@@ -2,41 +2,37 @@
 var express = require('express');
 var hashclient = require('hashapi-lib-node');
 var crypto = require('crypto');
+var Env = require('../config/env.js');
+
 
 function Tierion() {
   this.hashClient;
 
 }
 // class methods
-Tierion.prototype.putHash = function(str) {
+Tierion.prototype.putHash = function(str, callback) {
 	var hash = crypto.createHash('sha256').update(str).digest("hex");
 
   this.hashClient.submitHashItem(hash, function(err, result){
       if(err) {
         console.log(err);
+        callback(err);
       } else {
         console.log(result);
-        return receipt = result.receiptId;
+        callback(null, result.receiptId);
       }
-  }); 
+  });
 };
 
-Tierion.prototype.compareHash = function(str, receipt) {
+Tierion.prototype.compareHash = function(str, receipt, callback) {
   this.hashClient.getReceipt(receipt, function(err, result) {
     if(err) {
         console.log(err);
+        callback(err);
     } else {
       var hash = crypto.createHash('sha256').update(str).digest("hex");
       var j = JSON.parse(result['receipt']);
-      if (j['targetHash'].toString() === hash) {
-        console.log("match");
-        return "match";
-      }
-      else {
-        console.log(hash.toString()+"\ndoesn't match\n"+j['targetHash'].toString());
-        return hash+"\ndoesn't match\n"+j['targetHash'].toString();
-      }
-
+      callback(null, j['targetHash'].toString() === hash);
     }
   });
 
@@ -46,20 +42,18 @@ Tierion.prototype.compareHash = function(str, receipt) {
 
 Tierion.prototype.auth = function(callback) {
 
-  var username = 'mtidwell021@gmail.com';
-  var password = 'boatsnhoes';
-
   this.hashClient = new hashclient();
   console.log("hashClient created");
-  this.hashClient.authenticate(username, password, function(err, authToken) {
+  this.hashClient.authenticate(Env.USER, Env.PASS, function(err, authToken) {
       if(err) {
           console.log(err);
+          callback(err)
       } else {
         console.log("hashClient set");
         // authentication was successful
         // access_token, refresh_token are returned in authToken
-        // authToken values are saved internally and managed autmatically for the life of the HashClient 
-        callback();
+        // authToken values are saved internally and managed autmatically for the life of the HashClient
+        callback(null);
       }
   });
 

@@ -69,20 +69,18 @@
 		        <tbody>
 		          <tr>
 		            <th><i class="fa fa-calendar"></i> Date Recieved</th>
-		            <th>Lot #</th>
-		            <th>TI</th>
-		            <th>TH</th>
-		            <th>TS</th>
+								<th>Lot #</th>
+								<th>Name</th>
+								<th>National Drug Code</th>
 		            <th>Verified</th>
 		          </tr>
 							<% for(var i=0; i < materials.length; i++) { %>
 								<tr onclick="document.location = '/tracking';">
 	 		            <td>08/16/2016</td>
 	 		            <td><%= materials[i].lotNumber %></td>
-	 								<td>Recieved</td>
-	 								<td>Issue</td>
-	 								<td>Pending</td>
-	 								<td><i class="fa fa-circle-o"></i></td>
+	 								<td><%= materials[i].name %></td>
+	 								<td><%= materials[i].nationalDrugCode %></td>
+	 								<td><i class="fa fa-check-circle-o"></i></td>
 	 		          </tr>
 							<% } %>
 
@@ -104,42 +102,24 @@
 		        <tbody>
 		          <tr>
 		            <th><i class="fa fa-calendar"></i> Date Dispatched</th>
-		            <th>Lot #</th>
-		            <th>TI</th>
-		            <th>TH</th>
-		            <th>TS</th>
+		            <th>ID</th>
+		            <th>Num Sources</th>
 		            <th>Verified</th>
 		          </tr>
+
+							<% for(var i=0; i < transfers.length; i++) { %>
+								<tr onclick="document.location = '/tracking';">
+			            <td><%= moment(transfers[i].createdDate).format('MM/DD/YY'); %></td>
+									<td> <%= transfers[i].id %></td>
+			            <td> <%= transfers[i].sourceMaterialIds.length %></td>
+									<td><i class="fa fa-check-circle-o"></i></td>
+			          </tr>
+							<% } %>
+
 							<tr onclick="document.location = '/tracking';">
 		            <td>08/16/2016</td>
-		            <td>1489283</td>
-								<td>Recieved</td>
-								<td>Issue</td>
-								<td>Pending</td>
-								<td><i class="fa fa-circle-o"></i></td>
-		          </tr>
-							<tr onclick="document.location = '/tracking';">
-		            <td>08/16/2016</td>
-		            <td>1489283</td>
-								<td>Recieved</td>
-								<td>Issue</td>
-								<td>Pending</td>
-								<td><i class="fa fa-times-circle-o"></i></td>
-		          </tr>
-							<tr onclick="document.location = '/tracking';">
-		            <td>08/16/2016</td>
-		            <td>1489283</td>
-								<td>Recieved</td>
-								<td>Recieved</td>
-								<td>Recieved</td>
-								<td><i class="fa fa-check-circle-o"></i></td>
-		          </tr>
-							<tr onclick="document.location = '/tracking';">
-		            <td>08/16/2016</td>
-		            <td>1489283</td>
-								<td>Recieved</td>
-								<td>Issue</td>
-								<td>Pending</td>
+		            <td>Zocor</td>
+								<td>3</td>
 								<td><i class="fa fa-times-circle-o"></i></td>
 		          </tr>
 							<tr onclick="document.location = '/tracking';">
@@ -147,8 +127,7 @@
 		            <td></td>
 								<td></td>
 								<td></td>
-								<td></td>
-								<td></td>
+
 		          </tr>
 		        </tbody>
 		      </table>

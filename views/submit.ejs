@@ -36,18 +36,22 @@
 			<div class="inner-wrap">
 				<h1 class="pad-20">Choose Product:</h1>
 				<div class="control-group">
-					<% for(var i=0; i < materials.length; i++) { %>
-						<label class="control control--checkbox" name="sourceMaterials" value="<%= materials[i]._id %>"><%= materials[i].name %>
-							<input type="checkbox"/>
-							<div class="control__indicator"></div>
-						</label>
+					<% if (materials){ %>
+						<% for(var i=0; i < materials.length; i++) { %>
+							<label class="control control--checkbox" name="sourceMaterials" value="<%= materials[i]._id %>"><%= materials[i].name %>
+								<input type="checkbox"/>
+								<div class="control__indicator"></div>
+							</label>
+						<% } %>
 					<% } %>
 				</div>
 			  <hr>
 				<h1 class="pad-20">Send To:</h1>
 				<select class="form-control" name="targetUser">
-					<% for(var i=0; i < targetUsers.length; i++) { %>
-						<option value="<%= targetUsers[i].id %>"><%= targetUsers[i].username %></option>
+					<% if (targetUsers){ %>
+						<% for(var i=0; i < targetUsers.length; i++) { %>
+							<option value="<%= targetUsers[i].id %>"><%= targetUsers[i].username %></option>
+						<% } %>
 					<% } %>
 				</select>
 				<hr>
