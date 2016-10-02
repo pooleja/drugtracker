@@ -57,6 +57,10 @@ router.get('/tracking', function (req, res) {
   res.render('tracking', { title: "Lot Tracking"});
 });
 
+router.get('/submit', function (req, res) {
+  res.render('submit', { title: "Submit Lot"});
+});
+
 router.get('/teirion', function (req, res) {
 
   // Add teirion login here
