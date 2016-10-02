@@ -25,7 +25,14 @@ router.get('/signup', function (req, res) {
 });
 
 router.post('/signup', function(req, res) {
-  User.register(new User({ username : req.body.username, stageId: req.body.stage }), req.body.password, function(err, account) {
+  User.register(new User({
+      username : req.body.username,
+      stageId: req.body.stage,
+      companyName: req.body.companyName,
+      companyAddress: req.body.companyAddress,
+      companyPhone: req.body.companyPhone,
+    }), req.body.password, function(err, account) {
+
       if (err) {
         console.log(err);
         return res.render("signup", {info: "Sorry. That username already exists. Try again."});
@@ -179,10 +186,10 @@ router.get("/create_transfer", function(req, res){
     var nextStage = getNextStage(foundMaterials[0].stageId);
     console.log("Next stage: " + nextStage);
     User.find({ stageId: nextStage }, function(err, foundtargetUsers){
+
       res.render('create_transfer', { title: "Create Transfer", materials: foundMaterials, targetUsers: foundtargetUsers, user: req.user});
+
     });
-
-
   });
 
 });
@@ -205,12 +212,11 @@ router.post("/create_transfer", function(req, res){
     fromUserId: req.user.id,
     toUserId: targetUserId,
     sourceMaterialIds: sourceMaterials,
-    targetMaterialId = m.id,
+    targetMaterialId: m.id,
   });
   t.save();
 
-  // Submit hash to blockchain
-  
+  // Submit hash to blockchain and create receipt
 
 });
 
