@@ -17,4 +17,8 @@ router.get('/tracking', function (req, res) {
   res.render('tracking', { title: "Lot Tracking"});
 });
 
+router.get('/submit', function (req, res) {
+  res.render('submit', { title: "Submit Lot"});
+});
+
 module.exports = router;

@@ -1,0 +1,54 @@
+.node-group{
+  display: table;
+  table-layout: fixed;
+  border-spacing: 1vw 0;
+  padding: 20px 0;
+  .node{
+    &:nth-child(n+2){
+      &:before {
+          content: ">";
+          position: absolute;
+          color: $light-blue;
+          font-weight: 800;
+          margin-left: -6.8vw;
+      }
+    }
+    display: table-cell;
+    overflow: hidden;
+    transition: all .2s;
+    border: 1px solid $light-blue;
+    cursor: pointer;
+    border-radius: 100px;
+    height: 60px;
+    padding-top: 14px;
+    &:hover{
+      background-color: lighten($light-blue, 40);
+    }
+    &.active{
+      background-color: $light-blue;
+      .node-link{
+        color: $offwhite !important;
+        font-weight: 600;
+      }
+    }
+    img{
+      width: 25px;
+      height: 20px;
+    }
+
+    &:nth-child(n-1){
+    }
+    &:first-child{
+    }
+    &:last-child{
+    }
+    &:only-child{
+    }
+    .node-link{
+      color: $dark-blue;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
