@@ -50,10 +50,13 @@
 				<select class="form-control" name="targetUser">
 					<% if (targetUsers){ %>
 						<% for(var i=0; i < targetUsers.length; i++) { %>
-							<option value="<%= targetUsers[i].id %>"><%= targetUsers[i].username %></option>
+							<option value="<%= targetUsers[i].id %>"><%= targetUsers[i].companyname %></option>
 						<% } %>
 					<% } %>
 				</select>
+				<hr>
+				<h1 class="pad-20">New Material Name:</h1>
+				<input type="text" name="materialName" placeholder="ie: Viagra"/>
 				<hr>
 				<h1 class="pad-20">Verify:</h1>
 				<div class="control-group">
