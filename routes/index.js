@@ -18,11 +18,11 @@ router.get('/', function (req, res) {
        console.log("Failed to find materials.")
     }
 
-    var ret = {};
+    var ret = [];
     if(foundMaterials)
       ret = foundMaterials;
 
-    res.render('index', { title: "Home", materials: foundMaterials});
+    res.render('index', { title: "Home", materials: ret});
   });
 
 });
@@ -251,7 +251,11 @@ router.post("/create_material", function(req, res){
     if(!req.isAuthenticated() || req.user.stageId != "57f02e2b7f3b0bfe2fee4587")
       return res.redirect('/');
 
-    var m = new Material({name:req.body.name, ownerId: req.user.id, stageId:"57f02e2b7f3b0bfe2fee4587"});
+    var m = new Material({
+      name:req.body.name,
+      ownerId: req.user.id,
+      stageId:"57f02e2b7f3b0bfe2fee4587"
+    });
     m.save();
 
     return res.redirect('/materials');
