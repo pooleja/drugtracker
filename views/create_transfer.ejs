@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+    Create Transfer Page
+		<a href="/logout">logout</a>
+		<a href="/login">login</a>
+		<a href="/signup">signup</a>
+
+		<br />
+	  <p>
+	  	Username: <%= user.username %>
+	  </p>
+		<p>
+			User Stage: <%= user.stageId %>
+		</p>
+		<br />
+
+		<h2>Create Transfer</h2>
+		<form action="/create_transfer" method="post">
+			<div>
+					<label>Source Materials:</label>
+					<br />
+					<% for(var i=0; i < materials.length; i++) { %>
+						<input type="checkbox" name="sourceMaterials" value="<%= materials[i]._id %>"> <%= materials[i].name %><br>
+					<% } %>
+			</div>
+			<div>
+					<label>Send To:</label>
+					<br />
+					<select class="form-control" name="targetUser">
+						<% for(var i=0; i < targetUsers.length; i++) { %>
+							<option value="<%= targetUsers[i].id %>"><%= targetUsers[i].username %></option>
+						<% } %>
+					</select>
+			</div>
+
+			<div>
+					<label>Target Material Name:</label>
+					<input type="text" id="" name="materialName" placeholder="New Material #1">
+			</div>
+			<h4>Transaction Statement</h4>
+			<div>
+				
+				<input type="checkbox" name="authorized" value="authorized">Authorized as required under DSCSA?<br>
+				<input type="checkbox" name="sourceAuthorized" value="sourceAuthorized">Received the product from a person that is authorized as required under DSCSA?<br>
+				<input type="checkbox" name="recievedTsFromSource" value="recievedTsFromSource">Received transaction information and a transaction statement from the prior owner of the product, as required under the law?<br>
+				<input type="checkbox" name="notIllegal" value="notIllegal">Did not knowingly ship a suspect or illegitimate product?<br>
+				<input type="checkbox" name="complied" value="complied">Had systems and processes in place to comply with verification requirements under the law?<br>
+				<input type="checkbox" name="notFalseInfo" value="notFalseInfo">Did not knowingly provide false transaction informatio?<br>
+				<input type="checkbox" name="notAltered" value="notAltered">Did not knowingly alter the transaction history?<br>
+
+			<div>
+					<input type="submit" value="Submit Transfer"/>
+			</div>
+	</form>
+
+	</body>
+</html>

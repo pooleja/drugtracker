@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+    Create Transfer Page
+		<a href="/logout">logout</a>
+		<a href="/login">login</a>
+		<a href="/signup">signup</a>
+
+
+		<h2>Create Material</h2>
+		<form action="/create_material" method="post">
+			<div>
+					<label>Material Name:</label>
+					<br />
+					<input type="text" name="name" placeholder="New Material #1">
+			</div>
+
+			<div>
+					<label>Dosage:</label>
+					<br />
+					<input type="text" name="dosage" placeholder="">
+			</div>
+
+			<div>
+					<label>National Drug:</label>
+					<br />
+					<input type="text" name="nationalDrugCode" placeholder="">
+			</div>
+
+			<div>
+					<label>Container Size:</label>
+					<br />
+					<input type="text" name="containerSize" placeholder="">
+			</div>
+
+			<div>
+					<label>Number Containers:</label>
+					<br />
+					<input type="text" name="numContainers" placeholder="">
+			</div>
+
+			<div>
+					<label>Lot Number:</label>
+					<br />
+					<input type="text" name="lotNumber" placeholder="">
+			</div>
+
+			<div>
+					<input type="submit" value="Submit"/>
+			</div>
+	</form>
+
+	</body>
+</html>
