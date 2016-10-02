@@ -33,6 +33,8 @@
 			</div>
 			<hr>
 
+			<form action="/create_transfer" method="post">
+
 			<div class="inner-wrap">
 				<h1 class="pad-20">Choose Product:</h1>
 				<div class="control-group">
@@ -50,7 +52,7 @@
 				<select class="form-control" name="targetUser">
 					<% if (targetUsers){ %>
 						<% for(var i=0; i < targetUsers.length; i++) { %>
-							<option value="<%= targetUsers[i].id %>"><%= targetUsers[i].companyname %></option>
+							<option value="<%= targetUsers[i].id %>"><%= targetUsers[i].companyName %></option>
 						<% } %>
 					<% } %>
 				</select>
@@ -92,10 +94,10 @@
 
 				<hr>
 				<div class="small-12">
-					<a href="/" class="button-small text-right">Submit</a>
+					<input class="button-small text-right" type="submit" value="Submit"/>
 				</div>
 			</div>
-
+			</form>
 
 			<div class="footer">
 				<p>All content copyright 2016 Veripharm</p>

@@ -32,7 +32,6 @@ router.get('/', function (req, res) {
       if(foundTransfers){
         retTransfers = foundTransfers;
       }
-      console.log("----" + JSON.stringify(retTransfers));
 
 
       return res.render('index', { title: "Home", materials: ret, transfers: retTransfers, moment: moment});
@@ -153,7 +152,6 @@ router.get("/viagra", function(req, res){
 
           Material.find({'_id':  { $in: sildenafilTransfer.sourceMaterialIds.map(function(o){ return mongoose.Types.ObjectId(o); })}}, function(err, sourceMaterials){
 
-            console.log("----" + sourceMaterials);
 
             res.render('viagra', { title: "Viagra",
               viagra: viagra,
@@ -234,7 +232,7 @@ router.get("/create_transfer", function(req, res){
     var nextStage = getNextStage(foundMaterials[0].stageId);
     console.log("Next stage: " + nextStage);
     User.find({ stageId: nextStage }, function(err, foundtargetUsers){
-
+      console.log(JSON.stringify(foundtargetUsers));
       res.render('submit', { title: "Create Transfer", materials: foundMaterials, targetUsers: foundtargetUsers, user: req.user});
 
     });
