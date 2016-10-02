@@ -26,6 +26,7 @@
     "express-session": "^1.14.1",
     "hashapi-lib-node": "^1.2.0",
     "mongoose": "^4.6.2",
-    "passport": "^0.3.2"
+    "passport": "^0.3.2",
+    "request": "^2.75.0"
   }
 }
