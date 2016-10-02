@@ -1,0 +1,65 @@
+/* Begin Button Classes */
+
+.button-medium {
+  display: inline-block;
+  color: $offwhite;
+  transition: all .2s;
+  padding: 20px 30px;
+  margin: 5px;
+  background-color: $light-blue;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover{
+    background-color: $salmon;
+    color: $offwhite;
+  }
+}
+.button-small {
+  display: inline-block;
+  color: $offwhite;
+  transition: all .1s;
+  padding: 5px 20px;
+  border-radius: 100px;
+  border: 1px solid $light-blue;
+  cursor: pointer;
+  &:hover{
+    background-color: $light-blue;
+    color: $offwhite !important;
+  }
+}
+.disabled{
+  color: grey !important;
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+  background-color: lightgrey;
+}
+.hidden{
+  visibility: hidden;
+}
+
+// This is for the edit/delete buttons in the tables
+td{
+  a{
+    padding: 5px 12px !important;
+    &:nth-child(n+2){
+      border-left: 1px solid white;
+    }
+    &:first-child{
+      border-radius: 5px 0 0 5px !important;
+    }
+    &:last-child{
+      border-radius: 0 5px 5px 0 !important;
+    }
+    &:only-child{
+      border-radius: 5px !important;
+    }
+  }
+}
+
+.center-button-container{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* End Button Classes */

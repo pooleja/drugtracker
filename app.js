@@ -1,5 +1,24 @@
 var express = require('express');
+
+var sassMiddleware = require('node-sass-middleware');
+var path = require('path');
 var app = express();
+
+var srcPath = __dirname + '/sass';
+var destPath = __dirname + '/public';
+app.use(
+  sassMiddleware({
+    src: srcPath,
+    dest: destPath,
+    debug: true,
+    outputStyle: 'compressed',
+}));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public/js'));
+// Note: you must place sass-middleware *before* `express.static` or else it will
+// not work.
+
+
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');

@@ -1,21 +1,192 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="stylesheets/font-awesome.min.css">
 	</head>
 	<body>
-    Index Page
-		<a href="/logout">logout</a>
-		<a href="/login">login</a>
-		<a href="/signup">signup</a>
+		<div class="small-12 columns header">
+			<div class="small-6 columns">
+				<h1><a href="/">Veripharm</a></h1>
+			</div>
+			<div class="small-6 right columns">
+				<div class="right-content">
+					<div class="avatar"></div>
+					<div class="user-info">
+						<div class="name">
+							<a href="#">Austin Ban</a>
+						</div>
+						<div class="user-type">
+							<h3>Manufacturer</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-		<% if( loggedin ){ %>
+		<div class="row wrapper">
+			<div class="row">
+				<div class="small-12">
+					<h1>Industry Overview</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-center node-group small-12">
+		      <div class="node">
+		          <a href="/info/review" class="node-link active"> <img src="assets/img/crystal.svg" alt="" class="icon"> Raw Materials</a>
+		      </div>
+		      <div class="node">
+		          <a href="/info/review" class="node-link"><img src="assets/img/molecule.svg" alt="" class="icon"> API</a>
+		      </div>
+		      <div class="node active">
+		          <a href="/info/review" class="node-link"><img src="assets/img/factory.svg" alt="" class="icon"> Manufacturer</a>
+		      </div>
+					<div class="node">
+		          <a href="/info/review" class="node-link"><img src="assets/img/truck.svg" alt="" class="icon"> Wholesaler</a>
+		      </div>
+					<div class="node">
+		          <a href="/info/review" class="node-link"><img src="assets/img/pharmacy.svg" alt="" class="icon"> Pharmacy</a>
+		      </div>
+					<div class="node">
+		          <a href="/info/review" class="node-link"><img src="assets/img/person.svg" alt="" class="icon"> Consumer</a>
+		      </div>
+			  </div>
+			</div>
+			<hr>
 
-			<h1>logged in</h1>
+			<div class="row pad-20">
+				<div class="table-topper small-8 columns">
+					<h1><img src="assets/img/molecule.svg" alt="" class="icon">API Material Overview</h1>
+				</div>
+				<div class="small-4 columns text-right">
+					<a href="/submit" class="button-small">Submit A Lot</a>
+				</div>
 
-		<% }else{ %>
+				<input type="text" class="search" name="search" placeholder="Search..">
+				<div class="small-12">
+		      <table>
+		        <tbody>
+		          <tr>
+		            <th><i class="fa fa-calendar"></i> Date Recieved</th>
+		            <th>Lot #</th>
+		            <th>TI</th>
+		            <th>TH</th>
+		            <th>TS</th>
+		            <th>Verified</th>
+		          </tr>
+							<tr onclick="document.location = '/tracking';">
+		            <td>08/16/2016</td>
+		            <td>1489283</td>
+								<td>Recieved</td>
+								<td>Issue</td>
+								<td>Pending</td>
+								<td><i class="fa fa-circle-o"></i></td>
+		          </tr>
+							<tr onclick="document.location = '/tracking';">
+		            <td>08/16/2016</td>
+		            <td>1489283</td>
+								<td>Recieved</td>
+								<td>Issue</td>
+								<td>Pending</td>
+								<td><i class="fa fa-times-circle-o"></i></td>
+		          </tr>
+							<tr onclick="document.location = '/tracking';">
+		            <td>08/16/2016</td>
+		            <td>1489283</td>
+								<td>Recieved</td>
+								<td>Recieved</td>
+								<td>Recieved</td>
+								<td><i class="fa fa-check-circle-o"></i></td>
+		          </tr>
+							<tr onclick="document.location = '/tracking';">
+		            <td>08/16/2016</td>
+		            <td>1489283</td>
+								<td>Recieved</td>
+								<td>Issue</td>
+								<td>Pending</td>
+								<td><i class="fa fa-times-circle-o"></i></td>
+		          </tr>
+							<tr onclick="document.location = '/tracking';">
+		            <td><a href="" class="button-small">Load More</a></td>
+		            <td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+		          </tr>
+		        </tbody>
+		      </table>
+		    </div>
+			</div>
+			<hr>
+			<div class="row pad-20">
+				<div class="table-topper small-8 columns">
+					<h1><img src="assets/img/truck.svg" alt="" class="icon">Wholesaler Transaction History</h1>
+				</div>
+				<div class="small-4 columns text-right">
+				</div>
 
-				<h1>logged out</h1>
+				<input type="text" class="search" name="search" placeholder="Search..">
+				<div class="small-12">
+		      <table>
+		        <tbody>
+		          <tr>
+		            <th><i class="fa fa-calendar"></i> Date Dispatched</th>
+		            <th>Lot #</th>
+		            <th>TI</th>
+		            <th>TH</th>
+		            <th>TS</th>
+		            <th>Verified</th>
+		          </tr>
+							<tr onclick="document.location = '/tracking';">
+		            <td>08/16/2016</td>
+		            <td>1489283</td>
+								<td>Recieved</td>
+								<td>Issue</td>
+								<td>Pending</td>
+								<td><i class="fa fa-circle-o"></i></td>
+		          </tr>
+							<tr onclick="document.location = '/tracking';">
+		            <td>08/16/2016</td>
+		            <td>1489283</td>
+								<td>Recieved</td>
+								<td>Issue</td>
+								<td>Pending</td>
+								<td><i class="fa fa-times-circle-o"></i></td>
+		          </tr>
+							<tr onclick="document.location = '/tracking';">
+		            <td>08/16/2016</td>
+		            <td>1489283</td>
+								<td>Recieved</td>
+								<td>Recieved</td>
+								<td>Recieved</td>
+								<td><i class="fa fa-check-circle-o"></i></td>
+		          </tr>
+							<tr onclick="document.location = '/tracking';">
+		            <td>08/16/2016</td>
+		            <td>1489283</td>
+								<td>Recieved</td>
+								<td>Issue</td>
+								<td>Pending</td>
+								<td><i class="fa fa-times-circle-o"></i></td>
+		          </tr>
+							<tr onclick="document.location = '/tracking';">
+		            <td><a href="" class="button-small">Load More</a></td>
+		            <td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+		          </tr>
+		        </tbody>
+		      </table>
+		    </div>
+			</div>
 
-		<% } %>
+			<div class="footer">
+				<p>All content copyright 2016 Veripharm</p>
+			</div>
+		</div>
 	</body>
 </html>
