@@ -28,22 +28,18 @@ router.get('/', function (req, res) {
     Transfer.find({}, function(err, foundTransfers){
 
       var retTransfers = [];
-      if(foundTransfers)
+      var retTransferNames = [];
+      if(foundTransfers){
         retTransfers = foundTransfers;
-
-      for( t in retTransfers){
-        console.log("Looking for: "+t.targetMaterialId);
-        Material.findOne({'_id' : t.targetMaterialId}, function(err, foundMat){
-
-          if( foundMat){
-              t.displayName = foundMat.name;
-          }
-
-        });
       }
+      console.log("----" + JSON.stringify(retTransfers));
 
 
-      res.render('index', { title: "Home", materials: ret, transfers: retTransfers, moment: moment});
+      return res.render('index', { title: "Home", materials: ret, transfers: retTransfers, moment: moment});
+
+
+
+
     });
   });
 
@@ -228,7 +224,7 @@ router.get("/create_transfer", function(req, res){
     console.log("Next stage: " + nextStage);
     User.find({ stageId: nextStage }, function(err, foundtargetUsers){
 
-      res.render('submit', { title: "Create Transfer", materials: foundMaterials, targetUsers: foundtargetUsers, user: req.user});
+      res.render('create_transfer', { title: "Create Transfer", materials: foundMaterials, targetUsers: foundtargetUsers, user: req.user});
 
     });
   });

@@ -102,7 +102,7 @@
 		        <tbody>
 		          <tr>
 		            <th><i class="fa fa-calendar"></i> Date Dispatched</th>
-		            <th>Name</th>
+		            <th>ID</th>
 		            <th>Num Sources</th>
 		            <th>Verified</th>
 		          </tr>
@@ -110,7 +110,7 @@
 							<% for(var i=0; i < transfers.length; i++) { %>
 								<tr onclick="document.location = '/tracking';">
 			            <td><%= moment(transfers[i].createdDate).format('MM/DD/YY'); %></td>
-									<td> <%= transfers[i].displayName %></td>
+									<td> <%= transfers[i].id %></td>
 			            <td> <%= transfers[i].sourceMaterialIds.length %></td>
 									<td><i class="fa fa-check-circle-o"></i></td>
 			          </tr>
