@@ -38,6 +38,20 @@ Tierion.prototype.compareHash = function(str, receipt, callback) {
 
 };
 
+Tierion.prototype.getReceipt = function(receipt, callback) {
+  
+  this.hashClient.getReceipt(receipt, function(err, result) {
+    if(err) {
+        console.log(err);
+        callback(err);
+    } else {
+      callback(null, result['receipt']);
+    }
+  });
+
+};
+
+
 
 
 Tierion.prototype.auth = function(callback) {

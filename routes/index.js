@@ -91,10 +91,25 @@ router.get('/material/name/:id', function (req, res) {
 
 });
 
+router.get('/receipt/:id', function (req, res) {
+
+  Receipt.findOne({'_id': req.params.id}, function(err, receipt){
+    var tier  = new Tierion();
+    tier.auth(function(err){
+      tier.getReceipt(receipt.receiptId, function(err, str){
+         res.send(str);
+       });
+    });
+  });
+
+});
+
 router.get('/tracking/:transferId', function (req, res) {
 
   Transfer.findOne({'_id': req.params.transferId}, function(err, transfer){
-    res.render('tracking-real', { title: "Lot Tracking", transfer: transfer});
+    Receipt.findOne({'transferId': transfer.id}, function(err, receipt){
+      res.render('tracking-real', { title: "Lot Tracking", transfer: transfer, receipt: receipt.id});
+    });
   });
 
 });
