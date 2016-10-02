@@ -4,6 +4,7 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="stylesheets/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<div class="small-12 columns header">
@@ -15,7 +16,7 @@
 					<div class="avatar"></div>
 					<div class="user-info">
 						<div class="name">
-							<a href="#">Austin Ban</a>
+							<a href="/logout">Austin Ban</a>
 						</div>
 						<div class="user-type">
 							<h3>Manufacturer</h3>
@@ -80,9 +81,16 @@
 	 		            <td><%= materials[i].lotNumber %></td>
 	 								<td><%= materials[i].name %></td>
 	 								<td><%= materials[i].nationalDrugCode %></td>
-	 								<td><i class="fa fa-check-circle-o"></i></td>
+	 								<td><i class="fa fa-check-circle-o" style="color:green"></i></td>
 	 		          </tr>
 							<% } %>
+							<tr onclick="document.location = '/tracking';">
+		            <td><a href="" class="button-small">Load More</a></td>
+		            <td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+		          </tr>
 
 		        </tbody>
 		      </table>
@@ -103,24 +111,24 @@
 		          <tr>
 		            <th><i class="fa fa-calendar"></i> Date Dispatched</th>
 		            <th>ID</th>
-		            <th>Num Sources</th>
+		            <th>Num Source Materials</th>
 		            <th>Verified</th>
 		          </tr>
 
 							<% for(var i=0; i < transfers.length; i++) { %>
 								<tr onclick="document.location = '/tracking/<%= transfers[i].id %>';">
 			            <td><%= moment(transfers[i].createdDate).format('MM/DD/YY'); %></td>
-									<td>Malarone</td>
+									<td data-target-id="<%= transfers[i].targetMaterialId %>" class="targetId">Malarone</td>
 			            <td> <%= transfers[i].sourceMaterialIds.length %></td>
-									<td><i class="fa fa-check-circle-o"></i></td>
+									<td><i class="fa fa-check-circle-o" style="color:green"></i></td>
 			          </tr>
 							<% } %>
 
 							<tr onclick="document.location = '/tracking';">
 		            <td>08/16/2016</td>
-		            <td>Zocor</td>
+		            <td >Zocor</td>
 								<td>3</td>
-								<td><i class="fa fa-times-circle-o"></i></td>
+								<td><i class="fa fa-times-circle-o" style="color:red"></i></td>
 		          </tr>
 							<tr onclick="document.location = '/tracking';">
 		            <td><a href="" class="button-small">Load More</a></td>
@@ -138,5 +146,17 @@
 				<p>All content copyright 2016 Veripharm</p>
 			</div>
 		</div>
+		<script>
+			$( document ).ready(function() {
+				$("td.targetId").each(function(i){
+						var tdElement = $(this);
+				    var id = $(this).data("target-id");
+						$.getJSON( "/material/name/" + id, function( data ) {
+						  	tdElement.text(data['name']);
+						});
+				});
+			});
+    </script>
 	</body>
+
 </html>

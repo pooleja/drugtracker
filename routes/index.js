@@ -83,6 +83,13 @@ router.get('/search', function (req, res) {
   res.render('search', { title: "Lot Search"});
 });
 
+router.get('/material/name/:id', function (req, res) {
+
+  Material.findOne({'_id': req.params.id}, function(err, mat){
+    res.json({name: mat.name});
+  });
+
+});
 
 router.get('/tracking/:transferId', function (req, res) {
 
