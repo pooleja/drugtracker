@@ -60,7 +60,7 @@
 					<h1><img src="assets/img/molecule.svg" alt="" class="icon">API Material Overview</h1>
 				</div>
 				<div class="small-4 columns text-right">
-					<a href="/submit" class="button-small">Submit A Lot</a>
+					<a href="/create_transfer" class="button-small">Submit A Lot</a>
 				</div>
 
 				<input type="text" class="search" name="search" placeholder="Search..">
@@ -108,9 +108,9 @@
 		          </tr>
 
 							<% for(var i=0; i < transfers.length; i++) { %>
-								<tr onclick="document.location = '/tracking';">
+								<tr onclick="document.location = '/tracking/<%= transfers[i].id %>';">
 			            <td><%= moment(transfers[i].createdDate).format('MM/DD/YY'); %></td>
-									<td> <%= transfers[i].id %></td>
+									<td> Zocor</td>
 			            <td> <%= transfers[i].sourceMaterialIds.length %></td>
 									<td><i class="fa fa-check-circle-o"></i></td>
 			          </tr>
@@ -118,7 +118,7 @@
 
 							<tr onclick="document.location = '/tracking';">
 		            <td>08/16/2016</td>
-		            <td>Zocor</td>
+		            <td>MALARONE</td>
 								<td>3</td>
 								<td><i class="fa fa-times-circle-o"></i></td>
 		          </tr>

@@ -31,7 +31,7 @@
 					<br />
 					<select class="form-control" name="targetUser">
 						<% for(var i=0; i < targetUsers.length; i++) { %>
-							<option value="<%= targetUsers[i].id %>"><%= targetUsers[i].username %></option>
+							<option value="<%= targetUsers[i].id %>"><%= targetUsers[i].companyName %></option>
 						<% } %>
 					</select>
 			</div>
@@ -42,7 +42,7 @@
 			</div>
 			<h4>Transaction Statement</h4>
 			<div>
-				
+
 				<input type="checkbox" name="authorized" value="authorized">Authorized as required under DSCSA?<br>
 				<input type="checkbox" name="sourceAuthorized" value="sourceAuthorized">Received the product from a person that is authorized as required under DSCSA?<br>
 				<input type="checkbox" name="recievedTsFromSource" value="recievedTsFromSource">Received transaction information and a transaction statement from the prior owner of the product, as required under the law?<br>

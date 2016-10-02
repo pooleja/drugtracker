@@ -38,8 +38,6 @@ router.get('/', function (req, res) {
       return res.render('index', { title: "Home", materials: ret, transfers: retTransfers, moment: moment});
 
 
-
-
     });
   });
 
@@ -84,6 +82,15 @@ router.get('/logout', function(req, res) {
 
 router.get('/search', function (req, res) {
   res.render('search', { title: "Lot Search"});
+});
+
+
+router.get('/tracking/:transferId', function (req, res) {
+
+  Transfer.findOne({'_id': req.params.transferId}, function(err, transfer){
+    res.render('tracking-real', { title: "Lot Tracking", transfer: transfer});
+  });
+
 });
 
 router.get('/tracking', function (req, res) {
@@ -224,7 +231,7 @@ router.get("/create_transfer", function(req, res){
     console.log("Next stage: " + nextStage);
     User.find({ stageId: nextStage }, function(err, foundtargetUsers){
 
-      res.render('create_transfer', { title: "Create Transfer", materials: foundMaterials, targetUsers: foundtargetUsers, user: req.user});
+      res.render('submit', { title: "Create Transfer", materials: foundMaterials, targetUsers: foundtargetUsers, user: req.user});
 
     });
   });
