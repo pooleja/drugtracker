@@ -228,7 +228,7 @@ router.get("/create_transfer", function(req, res){
     console.log("Next stage: " + nextStage);
     User.find({ stageId: nextStage }, function(err, foundtargetUsers){
 
-      res.render('create_transfer', { title: "Create Transfer", materials: foundMaterials, targetUsers: foundtargetUsers, user: req.user});
+      res.render('submit', { title: "Create Transfer", materials: foundMaterials, targetUsers: foundtargetUsers, user: req.user});
 
     });
   });

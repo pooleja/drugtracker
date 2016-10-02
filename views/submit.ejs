@@ -28,46 +28,68 @@
 		<div class="row wrapper">
       <div class="row">
 				<div class="small-12">
-					<h1><a href ="javascript:history.back()"><i class="fa fa-arrow-circle-o-left"> </i> </a> Submit Lot Form</h1>
+					<h1><a href ="javascript:history.back()"><i class="fa fa-arrow-circle-o-left"> </i> </a> Product Transfer Form</h1>
+				</div>
+			</div>
+			<hr>
+
+			<div class="inner-wrap">
+				<h1 class="pad-20">Choose Product:</h1>
+				<div class="control-group">
+					<% for(var i=0; i < materials.length; i++) { %>
+						<label class="control control--checkbox" name="sourceMaterials" value="<%= materials[i]._id %>"><%= materials[i].name %>
+							<input type="checkbox"/>
+							<div class="control__indicator"></div>
+						</label>
+					<% } %>
+				</div>
+			  <hr>
+				<h1 class="pad-20">Send To:</h1>
+				<select class="form-control" name="targetUser">
+					<% for(var i=0; i < targetUsers.length; i++) { %>
+						<option value="<%= targetUsers[i].id %>"><%= targetUsers[i].username %></option>
+					<% } %>
+				</select>
+				<hr>
+				<h1 class="pad-20">Verify:</h1>
+				<div class="control-group">
+					<label class="control control--checkbox" name="authorized" value="authorized">Authorized as required under DSCSA?
+						<input type="checkbox"/>
+						<div class="control__indicator"></div>
+					</label>
+					<label class="control control--checkbox" name="sourceAuthorized" value="sourceAuthorized">Received the product from a person that is authorized as required under DSCSA?
+						<input type="checkbox"/>
+						<div class="control__indicator"></div>
+					</label>
+					<label class="control control--checkbox" name="recievedTsFromSource" value="recievedTsFromSource">Received transaction information and a transaction statement from the prior owner of the product, as required under the law?
+						<input type="checkbox"/>
+						<div class="control__indicator"></div>
+					</label>
+					<label class="control control--checkbox" name="notIllegal" value="notIllegal">Did not knowingly ship a suspect or illegitimate product?
+						<input type="checkbox"/>
+						<div class="control__indicator"></div>
+					</label>
+					<label class="control control--checkbox" name="complied" value="complied">Had systems and processes in place to comply with verification requirements under the law?
+						<input type="checkbox"/>
+						<div class="control__indicator"></div>
+					</label>
+					<label class="control control--checkbox" name="notFalseInfo" value="notFalseInfo">Did not knowingly provide false transaction information?
+						<input type="checkbox"/>
+						<div class="control__indicator"></div>
+					</label>
+					<label class="control control--checkbox" name="notAltered" value="notAltered">Did not knowingly alter the transaction history?
+						<input type="checkbox"/>
+						<div class="control__indicator"></div>
+					</label>
+				</div>
+
+				<hr>
+				<div class="small-12">
+					<a href="/" class="button-small text-right">Submit</a>
 				</div>
 			</div>
 
-			<div class="info-input">
-        <table>
-          <tbody>
-            <tr>
-              <td>API Lot #:</td>
-							<td><input type="text" name="lastname" placeholder="ie: 123456..."></input></td>
-            </tr>
-						<tr>
-              <td>Standardized Numerical ID</td>
-							<td><input type="text" name="lastname" placeholder="ie: 6434718192834"></input></td>
-            </tr>
-						<tr>
-              <td>Lot Number</td>
-							<td><input type="text" name="lastname" placeholder="ie: Viagra"></input></td>
-            </tr>
-						<tr>
-              <td>Expiration Date</td>
-							<td><input type="text" name="lastname" placeholder="ie: 1000"></input></td>
-            </tr>
-          </tbody>
-        </table>
-			</div>
 
-			<div class="info-input">
-        <table>
-          <tbody>
-						<tr>
-              <td>Send To:</td>
-							<td><input type="text" name="lastname" placeholder="ie: Pharma Inc"></input></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-			<div class="small-12">
-				<a href="/" class="button-small text-right">Submit</a>
-			</div>
 			<div class="footer">
 				<p>All content copyright 2016 Veripharm</p>
 			</div>
