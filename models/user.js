@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 var userSchema = new Schema({
     username: String,
     password: String,
+    stageId: String
 });
 
 userSchema.plugin(passportLocalMongoose);

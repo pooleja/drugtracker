@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+    Create Transfer Page
+		<a href="/logout">logout</a>
+		<a href="/login">login</a>
+		<a href="/signup">signup</a>
+
+		<br />
+	  <p>
+	  	Username: <%= user.username %>
+	  </p>
+		<p>
+			User Stage: <%= user.stageId %>
+		</p>
+		<br />
+
+		<h2>Create Transfer</h2>
+		<form action="/create_transfer" method="post">
+			<div>
+					<label>Source Materials:</label>
+					<br />
+					<% for(var i=0; i < materials.length; i++) { %>
+						<input type="checkbox" name="sourceMaterials" value="<%= materials[i]._id %>"> <%= materials[i].name %><br>
+					<% } %>
+			</div>
+			<div>
+					<label>Send To:</label>
+					<br />
+					<select class="form-control" name="targetUser">
+						<% for(var i=0; i < targetUsers.length; i++) { %>
+							<option value="<%= targetUsers[i].id %>"><%= targetUsers[i].username %></option>
+						<% } %>
+					</select>
+			</div>
+
+			<div>
+					<label>Material Name:</label>
+					<input type="text" id="" name="materialName" placeholder="New Material #1">
+			</div>
+
+			<div>
+					<input type="submit" value="Log In"/>
+			</div>
+	</form>
+
+	</body>
+</html>

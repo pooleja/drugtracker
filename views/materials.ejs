@@ -8,7 +8,12 @@
 		<a href="/login">login</a>
 		<a href="/signup">signup</a>
 
-    <%= name %>
+		<ul>
+			<% for(var i=0; i < materials.length; i++) { %>
+				 <li><%= materials[i].name %></li>
+			<% } %>
+		</ul>
+
 
 	</body>
 </html>
