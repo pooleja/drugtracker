@@ -26,6 +26,8 @@
     "express-session": "^1.14.1",
     "foundation-sites": "^6.2.3",
     "mongoose": "^4.6.2",
-    "passport": "^0.3.2"
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0"
   }
 }
