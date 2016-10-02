@@ -24,6 +24,8 @@ a{
 hr{
   border-bottom: 1px solid $light-gray;
 }
+p{
+}
 
 .text-right{
   text-align: right;
@@ -214,6 +216,11 @@ hr{
 select{
   border-radius: 100px;
   padding: 20px;
+}
+
+.graph{
+  border: 1px solid $light-blue;
+  background-color: $offwhite;
 }
 
 .footer{
